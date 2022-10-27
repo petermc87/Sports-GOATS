@@ -1,6 +1,7 @@
-const Goat = require('../models/goat.js')
+const Goat = require('../models/goat')
 
 const dataController = {
+  // Index,
   index (req, res, next) {
     Goat.find({}, (err, foundGoats) => {
       if (err) {
@@ -13,6 +14,7 @@ const dataController = {
       }
     })
   },
+  // Destroy
   destroy (req, res, next) {
     Goat.findByIdAndDelete(req.params.id, (err, deletedGoat) => {
       if (err) {
@@ -25,7 +27,9 @@ const dataController = {
       }
     })
   },
+  // Update
   update (req, res, next) {
+    // req.body.readyToEat = req.body.readyToEat === 'on'
     Goat.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedGoat) => {
       if (err) {
         res.status(400).send({
@@ -38,6 +42,7 @@ const dataController = {
     })
   },
   updateComment (req, res, next) {
+    console.log(req.body)
     Goat.findById(req.params.id, (err, foundGoat) => {
       if (err) {
         res.status(400).send({
@@ -59,7 +64,9 @@ const dataController = {
       }
     })
   },
+  // Create
   create (req, res, next) {
+    // req.body.readyToEat = req.body.readyToEat === 'on'
     Goat.create(req.body, (err, createdGoat) => {
       if (err) {
         res.status(400).send({
@@ -71,11 +78,14 @@ const dataController = {
       }
     })
   },
+  // Edit
+  // Show
   show (req, res, next) {
     Goat.findById(req.params.id, (err, foundGoat) => {
       if (err) {
-        res.status(400).send({
-          msg: err.message
+        res.status(404).send({
+          msg: err.message,
+          output: 'Could not find a goat with that ID'
         })
       } else {
         res.locals.data.goat = foundGoat
@@ -86,3 +96,4 @@ const dataController = {
 }
 
 module.exports = dataController
+

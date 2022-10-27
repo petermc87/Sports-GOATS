@@ -1,37 +1,41 @@
+// Start our router
+// Import express
 const express = require('express')
-
+// only the router none of the other app stuff
 const router = express.Router()
 const dataController = require('./dataController')
 const viewController = require('./viewController')
 const apiController = require('./apiController')
 
-// ---API ROUTES---//
-
-// INDEX
+// API ROUTES
+// Index
 router.get('/api', dataController.index, apiController.index)
-// DELETE
+// Delete
 router.delete('/api/:id', dataController.destroy, apiController.show)
-// UPDATE
+// Update
 router.put('/api/:id', dataController.update, apiController.show)
-// CREATE
+// Create
 router.post('/api', dataController.create, apiController.show)
-// SHOW
+// Show
 router.get('/api/:id', dataController.show, apiController.show)
 
-// ---REGULAR ROUTES---//
-
-// INDEX
+// STANDARD ROUTES
+// Index
 router.get('/', dataController.index, viewController.index)
-// NEW
+// New
 router.get('/new', viewController.newView)
-// DELETE
+// Delete
 router.delete('/:id', dataController.destroy, viewController.redirectHome)
-// UPDATE
+// Update
 router.put('/:id', dataController.update, viewController.redirectShow)
-router.put('/:id/comments', dataController.updateComment, viewController.redirectShow)
-// CREATE
+router.put('/:id/comments', dataController.updateComment, viewController.redirectShow) // <--comments
+// Create
 router.post('/', dataController.create, viewController.redirectShow)
-// SHOW
+// Edit
+router.get('/:id/edit', dataController.show, viewController.edit)
+// Show
 router.get('/:id', dataController.show, viewController.show)
+// Put for Comments
 
 module.exports = router
+

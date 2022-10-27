@@ -9,6 +9,7 @@ db.on('open', () => {
       backgroundImage: 'test.jpg',
       name: 'peter the great',
       trait: 'fantastic physique',
+      sport: 'soccer',
       description: 'the greatest soccer player of all time by a long shot. In fact, thats what this player is known for, epic long shots of the ball',
       nameOfPoster: 'jack in the box',
       comments: [{
@@ -23,6 +24,7 @@ db.on('open', () => {
       backgroundImage: 'test.jpg',
       name: 'cristy ronaldo',
       trait: 'unbelievable athleticism',
+      sport: 'football',
       description: 'Really really good player when hes not 37 and crying about being on the bench',
       nameOfPoster: 'Ronnie the man',
       comments: [{

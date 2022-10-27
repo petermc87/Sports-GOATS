@@ -14,12 +14,13 @@ const viewController = {
     res.render('goats/Show', res.locals.data)
   },
   redirectHome (req, res, next) {
-    res.render(RESOURCE_PATH)
+    res.redirect(RESOURCE_PATH)
   },
   redirectShow (req, res, next) {
     const goatId = req.params.id || res.locals.data.goat._id
     res.redirect(`${RESOURCE_PATH}/${goatId}`)
   }
+
 }
 
 module.exports = viewController

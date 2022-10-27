@@ -6,8 +6,11 @@ const goatSchema = new mongoose.Schema({
   backgroundImage: { type: String, required: true },
   name: { type: String, required: true },
   trait: { type: String, required: true },
+  sport: { type: String, required: true },
   description: { type: String, required: true },
   nameOfPoster: { type: String, required: true, timestamps: true },
+  postLikes: { type: Number, required: true },
+  postDislikes: { type: Number, required: true },
   comments: [{
     commentName: { type: String, required: true },
     commentBody: { type: String, required: true },
@@ -21,3 +24,5 @@ const goatSchema = new mongoose.Schema({
 const Goat = mongoose.model('Goat', goatSchema)
 
 module.exports = Goat
+
+
