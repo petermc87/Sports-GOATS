@@ -29,7 +29,6 @@ const dataController = {
   },
   // Update
   update (req, res, next) {
-    // req.body.readyToEat = req.body.readyToEat === 'on'
     Goat.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedGoat) => {
       if (err) {
         res.status(400).send({
@@ -42,7 +41,6 @@ const dataController = {
     })
   },
   updateComment (req, res, next) {
-    console.log(req.body)
     Goat.findById(req.params.id, (err, foundGoat) => {
       if (err) {
         res.status(400).send({
@@ -64,9 +62,29 @@ const dataController = {
       }
     })
   },
+  updateLikes (req, res, next) {
+    Goat.findById(req.params.id, (err, foundGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        foundGoat.postLikes.push(req.body) 
+        Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
+          if (err) {
+            res.status(400).send({
+              msg: err.message
+            })
+          } else {
+            res.locals.data.goat = updatedGoat
+            next()
+          }
+        })
+      }
+    })
+  },
   // Create
   create (req, res, next) {
-    // req.body.readyToEat = req.body.readyToEat === 'on'
     Goat.create(req.body, (err, createdGoat) => {
       if (err) {
         res.status(400).send({

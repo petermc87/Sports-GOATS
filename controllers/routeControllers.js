@@ -29,6 +29,7 @@ router.delete('/:id', dataController.destroy, viewController.redirectHome)
 // Update
 router.put('/:id', dataController.update, viewController.redirectShow)
 router.put('/:id/comments', dataController.updateComment, viewController.redirectShow) // <--comments
+router.put('/:id/postLikes', dataController.updateLikes, viewController.redirectShow) // <--likes/dislikes
 // Create
 router.post('/', dataController.create, viewController.redirectShow)
 // Edit
