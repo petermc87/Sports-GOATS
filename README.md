@@ -8,7 +8,14 @@
 
 ## Screenshots
 ### *Homepage*
-![alt text](images/homepage.png)
+<div style='border:solid black; border-radius: 20px; padding: 20px; background-color: black'>
+    <img src="images/homepage.png" ><img> 
+</div>
+
+<!-- <div style='border:solid black'>
+    <img src="images/homepage.png" width='300' height='300'><img src="images/homepage-grid.png" width='600' height='320'>
+</div> -->
+
 ### *Homepage Flex-Grid*
 ![alt text](images/homepage-grid.png)
 ### *Hamburger Menu*
