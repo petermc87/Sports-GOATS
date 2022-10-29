@@ -16,7 +16,7 @@ class Index extends React.Component {
 
                                   <br />
 
-                                  <div id='post'>
+                                  <div className='post'>
                                     <a className='hyper' href={`/goats/${goat._id}`}>
                                       {name}
                                     </a>

@@ -11,10 +11,10 @@ class Default extends React.Component {
         </head>
         <body>
           <div className='nav-menu' id='ribbon'>
-            <a className='ham-box' tabindex='1' href='#hamburger'>
-              <div />
-              <div />
-              <div />
+            <a className='ham-box' tabindex="1" href='#hamburger'>
+              <div></div>
+              <div></div>
+              <div></div>
             </a>
             <a id='logo' href='/goats'>
               <div id='shadows'>Sport Goats</div>
