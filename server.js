@@ -40,4 +40,3 @@ app.use('/goats', require('./controllers/routeControllers.js'))
 app.listen(PORT, () => {
   console.log('We in the building', PORT)
 })
-

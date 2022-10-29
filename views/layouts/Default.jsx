@@ -2,7 +2,7 @@ const React = require('react')
 
 class Default extends React.Component {
   render () {
-    const { goat, title } = this.props
+    const { _id, title } = this.props
     return (
       <html>
         <head>
@@ -10,15 +10,18 @@ class Default extends React.Component {
           <title>{title}</title>
         </head>
         <body>
-          <ribbon>
-            <input type='checkbox' className='nav-box' id='nav-checkbox' />
-            <label for='nav-checkbox' className='navigation-label'>
-              <span>&nbsp;</span>
-            </label>
-            <logo id='logo'>LOGO</logo>
-            <signin>PROFILE</signin>
-          </ribbon>
-          <hmenu className='nav-background'>&nbsp;
+          <div className='nav-menu' id='ribbon'>
+            <a className='ham-box' tabindex='1' href='#hamburger'>
+              <div />
+              <div />
+              <div />
+            </a>
+            <a id='logo' href='/goats'>
+              <div id='shadows'>Sport Goats</div>
+            </a>
+            <div id='login'>Profile</div>
+          </div>
+          <div className='nav-menu' id='hamburger'>&nbsp;
             <nav>
               <a href='/goats'>Home Page</a><br />
               <a href='/goats/new'>Create a GOAT</a><br />
@@ -26,7 +29,7 @@ class Default extends React.Component {
               <a href=''>Logout</a> <br />
               <a href='/signup'>Sign Up</a>
             </nav>
-          </hmenu>
+          </div>
 
         </body>
         <h1>

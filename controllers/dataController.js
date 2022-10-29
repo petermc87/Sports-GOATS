@@ -69,7 +69,7 @@ const dataController = {
           msg: err.message
         })
       } else {
-        foundGoat.postLikes.push(req.body) 
+        foundGoat.postLikes.push(req.body)
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
             res.status(400).send({
@@ -114,4 +114,3 @@ const dataController = {
 }
 
 module.exports = dataController
-

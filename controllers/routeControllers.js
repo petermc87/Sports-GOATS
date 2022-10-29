@@ -39,4 +39,3 @@ router.get('/:id', dataController.show, viewController.show)
 // Put for Comments
 
 module.exports = router
-

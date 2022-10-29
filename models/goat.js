@@ -11,7 +11,7 @@ const goatSchema = new mongoose.Schema({
   nameOfPoster: { type: String, required: true, timestamps: true },
   postLikes: [{
     likes: { type: Number, required: true },
-    dislikes: { type: Number, required: true}
+    dislikes: { type: Number, required: true }
   }],
   comments: [{
     commentName: { type: String, required: true },
@@ -26,5 +26,3 @@ const goatSchema = new mongoose.Schema({
 const Goat = mongoose.model('Goat', goatSchema)
 
 module.exports = Goat
-
-
