@@ -24,8 +24,8 @@
 
 | Number | Action  | URL            | HTTP Verb     | JSX View Filename | Mongoose Method   |
 | -------|:-------:|:--------------:|:-------------:|:-----------------:|:-----------------:|
-| 1      | Index   |  /goats/        |  GET          |    Index.jsx      |  goat.find()       |
-| 2      | Show    |  /goats/:id     |  GET          |    Show.jsx       |  goat.findById     |
+| 1      | Index   |  /goats/        |  GET          |    Index.jsx      |  Goat.find()       |
+| 2      | Show    |  /goats/:id     |  GET          |    Show.jsx       |  Goat.findById     |
 | 3      | New     |  /goats/new     |  GET          |    New.jsx        |  N/A              |
 | 4      | Create  |  /goats/        |  POST         |    none           |  Goat.create(req.body)|
 | 5      | Edit    |  /goats/:id/edit|  GET          |    Edit.jsx       |  Goat.findById     |

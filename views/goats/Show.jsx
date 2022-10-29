@@ -9,8 +9,7 @@ class Show extends React.Component {
 
     return (
       <Default title={`${capName} 🐐GOAT🐐`} goat={this.props.goat}>
-        
-       
+
         <div className='post'>
 
           <div>Post by: {nameOfPoster}</div><br />
@@ -21,19 +20,18 @@ class Show extends React.Component {
           <div id='show-back'><img src={backgroundImage} alt='' />
             <div id='show-img'><img src={image} alt='' /></div>
           </div>
-        
-            
-            <form action={`/goats/${_id}/edit`}>
-              <input type='submit' value='Edit Post' />
-            </form>
-            <form method='POST' action={`/goats/${_id}?_method=DELETE`}>
-              <input type='submit' value={`Delete ${name}`} />
-            </form>
-    
+
+          <form action={`/goats/${_id}/edit`}>
+            <input type='submit' value='Edit Post' />
+          </form>
+          <form method='POST' action={`/goats/${_id}?_method=DELETE`}>
+            <input type='submit' value={`Delete ${name}`} />
+          </form>
+
         </div>
         <div className='edit-delete'>
-        <h3>Likes & Dislikes</h3>
-        {
+          <h3>Likes & Dislikes</h3>
+          {
                           postLikes.length
                             ? postLikes.map((like) => {
                               return (
@@ -48,21 +46,20 @@ class Show extends React.Component {
 
           {/* maybe change the method to update and have a checkbox instead of a number. */}
           <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
-              like: <input type='number' name='likes' />
-              dislike: <input type='number' name='dislikes' />
-              <input type='submit' value='submit' /><br />
-            </form>
+            like: <input type='number' name='likes' />
+            dislike: <input type='number' name='dislikes' />
+            <input type='submit' value='submit' /><br />
+          </form>
 
-           
-          </div>
+        </div>
         <div className='edit-delete'>
-        <h3>Previous Comments</h3>
+          <h3>Previous Comments</h3>
           {
                             comments.length
                               ? comments.map((comment) => {
                               // console.log(comment)
                                 return (
-                                  <div className='comments'key={comment._id}>
+                                  <div className='comments' key={comment._id}>
 
                                     <p>Name: {comment.commentName}</p>
                                     <p>Comment: {comment.commentBody}</p>
@@ -78,7 +75,7 @@ class Show extends React.Component {
             <input type='submit' value='submit' /><br />
           </form>
         </div>
-        
+
       </Default>
     )
   }
