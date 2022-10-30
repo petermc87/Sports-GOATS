@@ -42,7 +42,6 @@ router.post('/login', async (req, res) => {
   // get the data from the request body
   const { username, password } = req.body
   // search for the user in the DB using Mongoose
-  console.log(username)
   User.findOne({ username })
 
     .then(async (user) => {
