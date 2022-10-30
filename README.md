@@ -18,6 +18,12 @@
 
 ### *Homepage Flex-Grid*
 ![alt text](images/homepage-grid.png)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/homepage-grid.png">
+  <source media="(prefers-color-scheme: light)" srcset="images/homepage-grid.png">
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="images/homepage-grid.png">
+</picture>
 ### *Hamburger Menu*
 ![alt text](images/hamburgermenu.png)
 ### *Show Page*
