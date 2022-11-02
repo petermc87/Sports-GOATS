@@ -27,9 +27,9 @@ class Index extends React.Component {
                                       </div>
                                     </div>
                                     <h4>GOAT Synposis</h4>
-                                      <p>
-                                        {description}
-                                      </p>
+                                    <p>
+                                      {description}
+                                    </p>
                                   </div>
                                 </div>
 

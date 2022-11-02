@@ -32,20 +32,18 @@ body {
     display: none;
     position: absolute;
     width: 100%;
+    /* font-size: 2rem; */
 }
 
-/* .new-form{
-  color: white;
-  font-size: larger;
-  -webkit-text-stroke: 0.5px #000000;
-} */
+
 nav{
-  font-size: 20px;
+  font-size: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   z-index: 1;
+
 }
 
 nav > a{

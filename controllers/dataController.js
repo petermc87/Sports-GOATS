@@ -51,8 +51,7 @@ const dataController = {
         })
       } else {
         foundGoat.comments.push(req.body)
-        
-       
+
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
             res.status(400).send({

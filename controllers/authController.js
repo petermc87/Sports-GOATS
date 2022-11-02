@@ -4,7 +4,6 @@ const express = require('express')
 const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 
-
 // Create Route
 const router = express.Router()
 
@@ -50,7 +49,7 @@ router.post('/login', async (req, res) => {
         // compare password
         const result = await bcrypt.compare(password, user.password)
         if (result) {
-          //setting the session to the verified user that logged in
+          // setting the session to the verified user that logged in
           req.session.username = username
           req.session.loggedIn = true
           // redirect to fruits page if successful

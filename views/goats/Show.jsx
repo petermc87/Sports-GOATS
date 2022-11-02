@@ -2,7 +2,6 @@
 const React = require('react')
 const Default = require('../layouts/Default.jsx')
 
-
 class Show extends React.Component {
   render () {
     const { image, postLikes, backgroundImage, name, sport, trait, nameOfPoster, description, comments, _id } = this.props.goat
@@ -59,14 +58,13 @@ class Show extends React.Component {
                             comments.length
                               ? comments.map((comment) => {
                               // console.log(comment)
-                              
-                              
+
                                 return (
                                   <div className='comments' key={comment._id}>
                                     <p><span>Name:</span> {comment.commentName}</p>
                                     <p><span>Comment:</span> {comment.commentBody}</p>
                                     <form method='POST' action={`/goats/${_id}/${comment._id}?_method=DELETE`}>
-                                      <input type='submit' value={`Delete`} />
+                                      <input type='submit' value='Delete' />
                                     </form>
                                   </div>
                                 )

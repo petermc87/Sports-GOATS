@@ -45,7 +45,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.render("Home.jsx")
+  res.render('Home.jsx')
 })
 
 app.use('/goats', require('./controllers/routeControllers.js'))
