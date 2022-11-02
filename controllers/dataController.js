@@ -1,4 +1,7 @@
+// const session = require('express-session')
 const Goat = require('../models/goat')
+const User = require('../models/user')
+const router = require('./authController')
 
 const dataController = {
   // Index,
@@ -48,7 +51,8 @@ const dataController = {
         })
       } else {
         foundGoat.comments.push(req.body)
-
+        
+       
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
             res.status(400).send({

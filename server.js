@@ -9,6 +9,8 @@ const db = require('./models/db')
 const app = express()
 const PORT = process.env.PORT || 3002
 const cors = require('cors')
+const MongoStore = require('connect-mongo')
+const session = require('express-session')
 
 /* Start config */
 app.use(express.urlencoded({ extended: true })) // This code makes us have req.body
@@ -24,9 +26,7 @@ app.engine('jsx', require('jsx-view-engine').createEngine())
 db.once('open', () => {
   console.log('connected to mongoDB Atlas')
 })
-app.get('/', (req, res) => {
-  res.render("Home.jsx")
-})
+
 /* END config */
 
 /* Start middleware */
@@ -34,6 +34,20 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use(methodOverride('_method'))
 app.use(express.static('public')) // <-- you do not add public to the path
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    saveUninitialized: true,
+    resave: false
+  })
+)
+
+app.get('/', (req, res) => {
+  res.render("Home.jsx")
+})
+
 app.use('/goats', require('./controllers/routeControllers.js'))
 app.use('/user', require('./controllers/authController.js'))
 app.use(cors())

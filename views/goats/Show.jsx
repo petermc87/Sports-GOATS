@@ -2,6 +2,7 @@
 const React = require('react')
 const Default = require('../layouts/Default.jsx')
 
+
 class Show extends React.Component {
   render () {
     const { image, postLikes, backgroundImage, name, sport, trait, nameOfPoster, description, comments, _id } = this.props.goat
@@ -12,10 +13,10 @@ class Show extends React.Component {
 
         <div className='post'>
 
-          <div>Post by: {nameOfPoster}</div><br />
-          <div>Sport: {sport}</div><br />
-          <div>Trait: {trait}</div><br />
-          <div>{description}</div><br />
+          <div><span>Post by:</span> {nameOfPoster}</div><br />
+          <div><span>Sport:</span> {sport}</div><br />
+          <div><span>Trait:</span> {trait}</div><br />
+          <div><span>Synopsis: <br /> <br /></span>{description}</div><br />
 
           <div id='show-back'><img src={backgroundImage} alt='' />
             <div id='show-img'><img src={image} alt='' /></div>
@@ -36,8 +37,8 @@ class Show extends React.Component {
                             ? postLikes.map((like) => {
                               return (
                                 <div key={like._id}>
-                                  <p>Likes: {like.likes}</p>
-                                  <p>Dislikes: {like.dislikes}</p>
+                                  <p><span>Likes:</span>{like.likes}</p>
+                                  <p><span>Dislikes:</span> {like.dislikes}</p>
                                 </div>
                               )
                             })
@@ -58,11 +59,15 @@ class Show extends React.Component {
                             comments.length
                               ? comments.map((comment) => {
                               // console.log(comment)
+                              
+                              
                                 return (
                                   <div className='comments' key={comment._id}>
-
-                                    <p>Name: {comment.commentName}</p>
-                                    <p>Comment: {comment.commentBody}</p>
+                                    <p><span>Name:</span> {comment.commentName}</p>
+                                    <p><span>Comment:</span> {comment.commentBody}</p>
+                                    <form method='POST' action={`/goats/${_id}/${comment._id}?_method=DELETE`}>
+                                      <input type='submit' value={`Delete`} />
+                                    </form>
                                   </div>
                                 )
                               })

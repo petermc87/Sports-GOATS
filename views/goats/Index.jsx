@@ -26,9 +26,10 @@ class Index extends React.Component {
                                         <img src={image} alt='' />
                                       </div>
                                     </div>
-                                    <p><h2>GOAT Synposis</h2>
-                                      {description}
-                                    </p>
+                                    <h4>GOAT Synposis</h4>
+                                      <p>
+                                        {description}
+                                      </p>
                                   </div>
                                 </div>
 

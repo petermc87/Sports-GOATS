@@ -34,11 +34,11 @@ body {
     width: 100%;
 }
 
-.new-form{
+/* .new-form{
   color: white;
   font-size: larger;
   -webkit-text-stroke: 0.5px #000000;
-}
+} */
 nav{
   font-size: 20px;
   display: flex;
@@ -54,7 +54,7 @@ nav > a{
   text-align: center; 
 }
 
- #ribbon, h1{
+ #ribbon, h1, .form{
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -214,6 +214,53 @@ input[type=submit]{
 
 input[type=submit]:hover{
     background-color: #a2abf6;
+}
+
+/* home page paragrah and heading styling */
+
+
+
+
+p{
+  font-size: 35px;
+  font-weight: lighter;
+}
+
+h4{
+  text-decoration-line: underline;
+}
+
+span{
+  font-weight: bolder;
+}
+
+.post > div{
+  font-weight: lighter;
+}
+
+.form{
+  margin-top: 10px;
+  font-size: 32px;
+}
+
+input[type=text]{
+  width: 300px;
+  height: 30px;
+  align-items: right;
+  font-size: 25px;
+}
+
+textarea{
+  height: 200px;
+  width: 90%;
+  font-size: 25px;
+}
+
+.new-form{
+  left: 10rem;
+  width: 60rem;
+  padding: 30px;
+  line-height:50px;
 }
   @keyframes shadows {
     0% {

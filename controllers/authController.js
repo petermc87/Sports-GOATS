@@ -50,6 +50,9 @@ router.post('/login', async (req, res) => {
         // compare password
         const result = await bcrypt.compare(password, user.password)
         if (result) {
+          //setting the session to the verified user that logged in
+          req.session.username = username
+          req.session.loggedIn = true
           // redirect to fruits page if successful
           res.redirect('/goats')
 
