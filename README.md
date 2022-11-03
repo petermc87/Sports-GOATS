@@ -2,10 +2,13 @@
 A CRUD based application, Sport GOATS is a place where you can post you favorite sports personality and why you think they are the GOAT.
 This is a fun place to display your best image of your GOAT including your reasons and have your say on othe users GOATS!
 
-## *Live Link*
+
 
 ## Getting Started
-To begin posting, create an account and login in. You will be redirected to the home page where you will have the option to view previous posts, comment and like/dislike. Additionally, you will be able to create your own
+Follow the live link to the page
+## *Live Link*
+
+To begin posting, create an account and login in. You will be redirected to the home page where you will have the option to view previous posts, comments and likes/dislikes. Additionally, you will be able to create your own.
 
 To post, you will have to option to:
 * Add your name
@@ -153,7 +156,7 @@ db.on('open', () => {
 
 ```
 
-Next, a model for the each GOAT post is created. This will include all the schema attributed mentioned previouly, including a `comments` and `postLikes` objects 
+Next, a model for the each GOAT post is created. This will include all the schema attributes (*see getting started*) mentioned previouly, including `comments` and `postLikes` objects. 
 
 ``` 
 const mongoose = require('mongoose')
@@ -209,21 +212,21 @@ module.exports = User
 ```
 
 #### Views
-Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is a part of a defualt desplay, along with the different page header. See *figure 1* thru *figure 8* for where at the top shows the navigation and corresponding header.
+Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is part of a defualt display, along with the page teh dynamically changing page header. See *figure 1* thru *figure 8* where at the top shows the navigation and corresponding header.
 
 The views for each page displayed to the user:
 
-* `Index.jsx` - React view template displaying all previously created GOAT posts (see *figure 1*)
-* `New.jsx` - React view template for creating a new GOAT (see *figure 9*)
-* `Edit.jsx` - React view template that is modeled exactly as the `New.jsx`. The information from the previously created post is pulled into this template so that it can be edited
+* `Index.jsx` - React view template displaying all previously created GOAT posts (see *figure 1*).
+* `New.jsx` - React view template for creating a new GOAT (see *figure 9*).
+* `Edit.jsx` - React view template that is modeled exactly as the `New.jsx`. The information from the previously created post is pulled into this template so that it can be edited.
 * `Show.jsx` React view template for displaying all the post information as selected by the user. It contains comments array and all posted likes and dislikes.
  
 #### Controllers
-To control the flow of data, a separate folder containing the `authController.js`, `dataController.js`, `routeController.js` and `viewController.js`
+To control the flow of data, a separate folder containing the `authController.js`, `dataController.js`, `routeController.js` and `viewController.js`.
 
 To note, the `server.js` contains the Express middleware connection between the `/goats` url and the `routeController.js`. This is also the case for the `/user`.
 
-Of particular interest to the reader is the the `authController.js`. There, where creating a new user, a password is encrypted(hashed and salted) with the help of the `bcrpytjs` npm package.
+Of particular interest to the reader is the the `authController.js`. When creating a new user, a password is encrypted(hashed and salted) with the help of the `bcrpytjs` npm package.
 
 ```
 router.post('/signup', async (req, res) => {
@@ -245,15 +248,13 @@ router.post('/signup', async (req, res) => {
     })
 })
 ```
-`findOne` Mongoose method is used to find the username based on login and password information provided. 
+Following signup request shown above, the `findOne` Mongoose method is used to find the username based on login and password information provided. 
 
 ### CRUD Operations
 #### Create
-The information entered by the user when creating a new goat is stored in `req` and given parameter name `createdGoat`
+The information entered by the user when creating a new goat is stored in `req` and given parameter name `createdGoat`.
 
-`Goat` models the `req` data from the use and stores it in the database via the the `.create` Mongoose method: 
-
-This will then be stored in local data
+`Goat` models the `req` data from the user and stores it in the database via the the `.create` Mongoose method. This will then be stored in local data.
 ```
 // Create
   create (req, res, next) {
@@ -288,7 +289,7 @@ When a user clicks on a post, `.findById` will search the database for a documen
 }
 ```
 #### Update
-A post is first edited by finding the corresponding post from the databse by `req.params.id`: its unique id. 
+A post is first edited by finding the corresponding post from the databse by `req.params.id`, its unique id. 
 
 ```
  // Edit
@@ -351,7 +352,7 @@ Below shows the same function used for updating comments for each post once a ne
   },
 ```
 #### Destroy
-Destroy will use the Mongoose method `.findByIdAndDelete` the find the post by its unique id (same as the previous methods) and delete as determined by the user.
+Destroy will use the Mongoose method `.findByIdAndDelete` to find the post by its unique id (same as the previous methods) and delete as determined by the user.
 
 ```
  // Destroy
@@ -369,7 +370,7 @@ Destroy will use the Mongoose method `.findByIdAndDelete` the find the post by i
   },
 ```
 ## Future Icebox Adapations
-There are a long list of items that could be added here, but thats the what happens when an over active mind gets, well, over active!
+There are a long list of items that could be added here, but thats what happens when an over active mind gets, well, over active!
 
 Here are the items that would be at the front of the list:
 * Add OAuth login
