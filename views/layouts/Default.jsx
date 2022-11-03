@@ -19,7 +19,7 @@ class Default extends React.Component {
             <a id='logo' href='/goats'>
               <div id='shadows'>Sport Goats</div>
             </a>
-            <div id='login'>Profile</div>
+            <div id='login'>{this.props.username}</div> 
           </div>
           <div className='nav-menu' id='hamburger'>&nbsp;
             <nav>

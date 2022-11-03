@@ -84,6 +84,10 @@ nav > a{
     display: block;
 }
 
+nav >a:hover{
+  color: #b752ee;
+}
+
 /* Logo styling */
   #logo {
     display: flex;
@@ -138,13 +142,16 @@ h3{
 
 .post, .edit-delete, .comments{
     margin-top: 1rem;
-    padding: 15px;
+    padding: 35px;
     font-size: 40px;
     font-weight: bold;
     border-radius: 5px;
     box-shadow: 4px 4px 4px 4px #00000029;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     background-color: white;
+}
+.edit-delete{
+  background-color: rgb(247, 247, 247);
 }
 
 #background-image{
@@ -214,11 +221,7 @@ input[type=submit]:hover{
     background-color: #a2abf6;
 }
 
-/* home page paragrah and heading styling */
-
-
-
-
+/* home page paragraph and heading styling */
 p{
   font-size: 35px;
   font-weight: lighter;
@@ -236,12 +239,13 @@ span{
   font-weight: lighter;
 }
 
+/* input create and edit styling */
 .form{
   margin-top: 10px;
   font-size: 32px;
 }
 
-input[type=text]{
+input[type=text], input[type=password]{
   width: 300px;
   height: 30px;
   align-items: right;
@@ -259,6 +263,13 @@ textarea{
   width: 60rem;
   padding: 30px;
   line-height:50px;
+}
+
+.background{
+  background-color: var(--color-primary);
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
   @keyframes shadows {
     0% {

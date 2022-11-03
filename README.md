@@ -1,36 +1,78 @@
 # Sport GOAT's 🐐
+A CRUD based application, Sport GOATS is a place where you can post you favorite sports personality and why you think they are the GOAT.
+This is a fun place to display your best image of your GOAT including your reasons and have your say on othe users GOATS!
+## *Live Link*
+
 
 ## Getting Started
+To begin posting, create an account and login in. You will be redirected to the home page where you will have the option to view previous posts, comment and like/dislike. Additionally, you will be able to create your own
+
+To post, you will have to option to:
+* Add your name
+* Add the sport your GOAT is asssociated with
+* Add their most notable trait *example: atheliticm*
+* Add and image and background image
+* A synopsis explaining the reasons for why they are the GOAT!
+
+Once created, you will be brought to the homepage where your post will be displayed and can be viewed by other users!
 
 ## Technologies Used
 
-## ERD & Wireframes
+* JavsScript
+* HTML
+* CSS
+* Express.js
+* Node.js
+* MongoDB
+* Mongoose
+
+## ERD, Wireframes & Kanban Board
 ![alt text](images/ERD.jpeg)
 
 ![alt text](images/wireframe.png)
 
+*Kanban Board*: https://trello.com/b/OSVDohzv/sports-goats#
 
 ## Screenshots
 ### *Homepage*
-<div style='border:solid black; border-radius: 20px; padding: 20px; background-color: black'>
-    <img src="images/homepage.png" ><img> 
-</div>
-
-<!-- <div style='border:solid black'>
-    <img src="images/homepage.png" width='300' height='300'><img src="images/homepage-grid.png" width='600' height='320'>
-</div> -->
-
-### *Homepage Flex-Grid*
+![alt text](images/homepage.png)
+### *Homepage Grid*
 ![alt text](images/homepage-grid.png)
 ### *Hamburger Menu*
-![alt text](images/hamburgermenu.png)
+![alt text](images/hamburger.png)
 ### *Show Page*
 ![alt text](images/showpage1.png)
 
 ![alt text](images/showpage2.png)
 
+![alt text](images/showpage3.png)
+
+![alt text](images/showpage4.png)
+
+![alt text](images/showpage5.png)
+
+## How the Application Works
+### Models Views & Controllers
+The applications is separated by the different models schema, view templates and controllers
+
+#### Application Models
+A database model is setup to connect the database collection URI to Mongoose
+
+ ``` 
+ const mongoose = require('mongoose')
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+module.exports = mongoose.connection 
+```
+
+Next, a model for the each GOAT post is created. This will include all the schema attributed mentioned previouly, including a comments array 
 
 ## RESTful Routes Table
+
 
 
 | Number | Action  | URL             | HTTP Verb     | JSX View Filename | Mongoose Method        | Notes                              |

@@ -11,12 +11,12 @@ class Show extends React.Component {
       <Default title={`${capName} 🐐GOAT🐐`} goat={this.props.goat}>
 
         <div className='post'>
-
-          <div><span>Post by:</span> {nameOfPoster}</div><br />
-          <div><span>Sport:</span> {sport}</div><br />
-          <div><span>Trait:</span> {trait}</div><br />
-          <div><span>Synopsis: <br /> <br /></span>{description}</div><br />
-
+          <div className='background'>
+            <div><span>Post by:</span> {nameOfPoster}</div><br />
+            <div><span>Sport:</span> {sport}</div><br />
+            <div><span>Trait:</span> {trait}</div><br />
+          </div>
+            <div className='background'><span>Synopsis: <br /> <br /></span>{description}</div><br />
           <div id='show-back'><img src={backgroundImage} alt='' />
             <div id='show-img'><img src={image} alt='' /></div>
           </div>
@@ -35,9 +35,9 @@ class Show extends React.Component {
                           postLikes.length
                             ? postLikes.map((like) => {
                               return (
-                                <div key={like._id}>
-                                  <p><span>Likes:</span>{like.likes}</p>
-                                  <p><span>Dislikes:</span> {like.dislikes}</p>
+                                <div className = 'comments' key={like._id}>
+                                  <p><span>Likes: </span>{like.likes}</p>
+                                  <p><span>Dislikes: </span> {like.dislikes}</p>
                                 </div>
                               )
                             })
@@ -46,6 +46,7 @@ class Show extends React.Component {
 
           {/* maybe change the method to update and have a checkbox instead of a number. */}
           <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
+            <br />
             like: <input type='number' name='likes' />
             dislike: <input type='number' name='dislikes' />
             <input type='submit' value='submit' /><br />

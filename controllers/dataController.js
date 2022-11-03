@@ -13,6 +13,7 @@ const dataController = {
         })
       } else {
         res.locals.data.goats = foundGoats
+        res.locals.data.loggedIn = req.session
         next()
       }
     })

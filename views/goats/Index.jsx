@@ -5,7 +5,7 @@ class Index extends React.Component {
   render () {
     const { goats } = this.props
     return (
-      <Default title='🐐GOATS Home Page🐐'>
+      <Default title='🐐GOATS Home Page🐐' username={this.props.loggedIn.username}>
         <div className='container'>
           <ul>
             {
