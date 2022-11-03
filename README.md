@@ -1,8 +1,8 @@
 # Sport GOAT's 🐐
 A CRUD based application, Sport GOATS is a place where you can post you favorite sports personality and why you think they are the GOAT.
 This is a fun place to display your best image of your GOAT including your reasons and have your say on othe users GOATS!
-## *Live Link*
 
+## *Live Link*
 
 ## Getting Started
 To begin posting, create an account and login in. You will be redirected to the home page where you will have the option to view previous posts, comment and like/dislike. Additionally, you will be able to create your own
@@ -25,10 +25,13 @@ Once created, you will be brought to the homepage where your post will be displa
 * Node.js
 * MongoDB
 * Mongoose
+* React
 
 ## ERD, Wireframes & Kanban Board
-![alt text](images/ERD.jpeg)
+### *ERD Diagram*
+![alt text](images/ERD.png)
 
+### *Wireframe Diagram*
 ![alt text](images/wireframe.png)
 
 *Kanban Board*: https://trello.com/b/OSVDohzv/sports-goats#
@@ -36,27 +39,33 @@ Once created, you will be brought to the homepage where your post will be displa
 ## Screenshots
 ### *Homepage*
 ![alt text](images/homepage.png)
+*Figure 1: Main Homepage*
 ### *Homepage Grid*
 ![alt text](images/homepage-grid.png)
+*Figure 2: Main Homepage*
 ### *Hamburger Menu*
 ![alt text](images/hamburger.png)
+*Figure 3: Hamburger Menu Dropdown*
 ### *Show Page*
-![alt text](images/showpage1.png)
-
+![alt text](images/showpage.png)
+*Figure 4: Post Show Page Details*
 ![alt text](images/showpage2.png)
-
+*Figure 5: Post Show Page Image/Background*
 ![alt text](images/showpage3.png)
-
+*Figure 6: Post Show Page Likes/Dislikes Section*
 ![alt text](images/showpage4.png)
-
+*Figure 7: Post Show Page Previous Comments Display*
 ![alt text](images/showpage5.png)
+*Figure 8: Post Show Page Comments Display*
+![alt text](images/create.png)
+*Figure 9: Create a new GOAT page*
 
 ## How the Application Works
 ### Models Views & Controllers
 The applications is separated by the different models schema, view templates and controllers
 
 #### Application Models
-A database model is setup to connect the database collection URI to Mongoose
+A database model is setup to connect the database collection URI to Mongoose. Code blocks for each models are shown here to guide the reader to how the data is passed into the application.
 
  ``` 
  const mongoose = require('mongoose')
@@ -69,7 +78,132 @@ mongoose.connect(process.env.MONGO_URI, {
 module.exports = mongoose.connection 
 ```
 
-Next, a model for the each GOAT post is created. This will include all the schema attributed mentioned previouly, including a comments array 
+To test that the database is recieving the information based on the `goat.js` model schema (explained below), we run a `seed.js`. This is then checked on the corresponding collection within MongoDB.
+
+```
+require('dotenv').config()
+const db = require('./db')
+const Goat = require('./goat.js')
+
+db.on('open', () => {
+  const starterGoats = [
+    {
+      image: 'test.jpg',
+      backgroundImage: 'test.jpg',
+      name: 'peter the great',
+      trait: 'fantastic physique',
+      sport: 'soccer',
+      description: 'the greatest soccer player of all time by a long shot. In fact, thats what this player is known for, epic long shots of the ball',
+      nameOfPoster: 'jack in the box',
+      comments: [{
+        commentName: 'Johnny the Maestro',
+        commentBody: 'I would tend to agree with this statement, simple FACTS!',
+        like: 40,
+        dislike: 22
+      }]
+    },
+    {
+      image: 'test.jpg',
+      backgroundImage: 'test.jpg',
+      name: 'cristy ronaldo',
+      trait: 'unbelievable athleticism',
+      sport: 'football',
+      description: 'Really really good player when hes not 37 and crying about being on the bench',
+      nameOfPoster: 'Ronnie the man',
+      comments: [{
+        commentName: 'A big RON fan',
+        commentBody: 'RON is the GOAT, FACT!!',
+        like: 5334,
+        dislike: 1002
+      }]
+    }
+  ]
+
+  Goat.deleteMany({}) // <-- empties the database
+    .then(() => {
+      Goat.create(starterGoats)
+        .then((createdGoats) => {
+          console.log('all the created GOATS: ', createdGoats)
+          db.close()
+        })
+        .catch((error) => {
+          console.log(error)
+          db.close()
+        })
+    })
+    .catch((error) => {
+      console.log(error)
+      db.close()
+    })
+})
+
+```
+
+Next, a model for the each GOAT post is created. This will include all the schema attributed mentioned previouly, including a `comments` and `postLikes` objects 
+
+``` 
+const mongoose = require('mongoose')
+
+// Create schema for GOAT post
+const goatSchema = new mongoose.Schema({
+  image: { type: String, required: true },
+  backgroundImage: { type: String, required: true },
+  name: { type: String, required: true },
+  trait: { type: String, required: true },
+  sport: { type: String, required: true },
+  description: { type: String, required: true },
+  nameOfPoster: { type: String, required: true, timestamps: true },
+  postLikes: [{
+    likes: { type: Number, required: true },
+    dislikes: { type: Number, required: true }
+  }],
+  comments: [{
+    commentName: { type: String, required: true },
+    commentBody: { type: String, required: true },
+    like: { type: Number, required: true },
+    dislike: { type: Number, required: true }
+  }]
+},
+{ timestamps: true }
+)
+
+const Goat = mongoose.model('Goat', goatSchema)
+
+module.exports = Goat
+```
+
+A user model is also created with a password and an array of all the comments created for each post and any likes or dislikes
+
+```
+// --- IMPORT DEPENDENCIES ---//
+const mongoose = require('mongoose')
+
+// --- DEFINE MODEL ---//
+// pull schema and model from mongoose
+const { Schema, model } = mongoose
+
+// make goats schema
+const userSchema = new Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+})
+
+// make goats model
+const User = model('User', userSchema)
+
+module.exports = User
+```
+#### Views
+Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is a part of a defualt desplay, along with the different page header. See *figure 1* thru *figure 8* for where at the top shows the navigation and corresponding header.
+
+The views foe each page are:
+
+* `Index.jsx` - React view template displaying all previously created GOAT posts (see *figure 1*)
+* `New.jsx` - React view template for creating a new GOAT (see *figure 9*)
+* `Edit.jsx` - React view template that is modeled exactly as the `New.jsx`. The information from the previously created post is pulled into this template so that it can be edited
+* `Show.jsx` React view template for displaying all the post information as selected by the user. It contains comments array and all posted likes and dislikes.
+ 
+####
 
 ## RESTful Routes Table
 
