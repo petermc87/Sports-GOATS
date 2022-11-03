@@ -10,9 +10,9 @@ To begin posting, create an account and login in. You will be redirected to the 
 To post, you will have to option to:
 * Add your name
 * Add the sport your GOAT is asssociated with
-* Add their most notable trait *example: atheliticm*
+* Add their most notable trait *example: atheliticism*
 * Add and image and background image
-* A synopsis explaining the reasons for why they are the GOAT!
+* Add a synopsis explaining the reasons for why they are the GOAT!
 
 Once created, you will be brought to the homepage where your post will be displayed and can be viewed by other users!
 
@@ -40,25 +40,39 @@ Once created, you will be brought to the homepage where your post will be displa
 ### *Homepage*
 ![alt text](images/homepage.png)
 *Figure 1: Main Homepage*
+
 ### *Homepage Grid*
 ![alt text](images/homepage-grid.png)
 *Figure 2: Main Homepage*
+
 ### *Hamburger Menu*
 ![alt text](images/hamburger.png)
 *Figure 3: Hamburger Menu Dropdown*
+
 ### *Show Page*
 ![alt text](images/showpage.png)
 *Figure 4: Post Show Page Details*
+<br><br />
+
 ![alt text](images/showpage2.png)
 *Figure 5: Post Show Page Image/Background*
+<br />
+
 ![alt text](images/showpage3.png)
 *Figure 6: Post Show Page Likes/Dislikes Section*
+<br />
+
 ![alt text](images/showpage4.png)
 *Figure 7: Post Show Page Previous Comments Display*
+<br />
+
 ![alt text](images/showpage5.png)
 *Figure 8: Post Show Page Comments Display*
+<br />
+
 ![alt text](images/create.png)
 *Figure 9: Create a new GOAT page*
+<br />
 
 ## How the Application Works
 ### Models Views & Controllers
@@ -193,21 +207,176 @@ const User = model('User', userSchema)
 
 module.exports = User
 ```
+
 #### Views
 Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is a part of a defualt desplay, along with the different page header. See *figure 1* thru *figure 8* for where at the top shows the navigation and corresponding header.
 
-The views foe each page are:
+The views for each page displayed to the user:
 
 * `Index.jsx` - React view template displaying all previously created GOAT posts (see *figure 1*)
 * `New.jsx` - React view template for creating a new GOAT (see *figure 9*)
 * `Edit.jsx` - React view template that is modeled exactly as the `New.jsx`. The information from the previously created post is pulled into this template so that it can be edited
 * `Show.jsx` React view template for displaying all the post information as selected by the user. It contains comments array and all posted likes and dislikes.
  
-####
+#### Controllers
+To control the flow of data, a separate folder containing the `authController.js`, `dataController.js`, `routeController.js` and `viewController.js`
+
+To note, the `server.js` contains the Express middleware connection between the `/goats` url and the `routeController.js`. This is also the case for the `/user`.
+
+Of particular interest to the reader is the the `authController.js`. There, where creating a new user, a password is encrypted(hashed and salted) with the help of the `bcrpytjs` npm package.
+
+```
+router.post('/signup', async (req, res) => {
+  // encrypt password
+  req.body.password = await bcrypt.hash(
+    req.body.password,
+    await bcrypt.genSalt(10)
+  )
+  // create a new user
+  User.create(req.body)
+    .then((user) => {
+      // redirect to home page
+      res.redirect('/user/login')
+    })
+    .catch((error) => {
+      // send error as json
+      console.log(error)
+      res.json({ error })
+    })
+})
+```
+`findOne` Mongoose method is used to find the username based on login and password information provided. 
+
+### CRUD Operations
+#### Create
+The information entered by the user when creating a new goat is stored in `req` and given parameter name `createdGoat`
+
+`Goat` models the `req` data from the use and stores it in the database via the the `.create` Mongoose method: 
+
+This will then be stored in local data
+```
+// Create
+  create (req, res, next) {
+    Goat.create(req.body, (err, createdGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.goat = createdGoat
+        next()
+      }
+    })
+  },
+```
+#### Read
+When a user clicks on a post, `.findById` will search the database for a document referenced by its unique id, `req.params.id`, and is stored locally to be passed into the `Show.jsx` template for rendering.
+```
+ show (req, res, next) {
+    Goat.findById(req.params.id, (err, foundGoat) => {
+      if (err) {
+        res.status(404).send({
+          msg: err.message,
+          output: 'Could not find a goat with that ID'
+        })
+      } else {
+        res.locals.data.goat = foundGoat
+        next()
+      }
+    })
+  }
+}
+```
+#### Update
+A post is first edited by finding the corresponding post from the databse by `req.params.id`: its unique id. 
+
+```
+ // Edit
+  // Show
+  show (req, res, next) {
+    Goat.findById(req.params.id, (err, foundGoat) => {
+      if (err) {
+        res.status(404).send({
+          msg: err.message,
+          output: 'Could not find a goat with that ID'
+        })
+      } else {
+        res.locals.data.goat = foundGoat
+        next()
+      }
+    })
+  }
+}
+```
+
+The post is then updated using `.findByIdAndUpdate` Mongoose method. Essentially, this is similar to the `.findById` but with the added `req.body` where the new information in the body of the post is then updated.
+
+Below shows the same function used for updating comments for each post once a new one is added.
+
+```
+  // Update
+  update (req, res, next) {
+    Goat.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.goat = updatedGoat
+        next()
+      }
+    })
+  },
+  updateComment (req, res, next) {
+    Goat.findById(req.params.id, (err, foundGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        foundGoat.comments.push(req.body)
+
+        Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
+          if (err) {
+            res.status(400).send({
+              msg: err.message
+            })
+          } else {
+            res.locals.data.goat = updatedGoat
+            next()
+          }
+        })
+      }
+    })
+  },
+```
+#### Destroy
+Destroy will use the Mongoose method `.findByIdAndDelete` the find the post by its unique id (same as the previous methods) and delete as determined by the user.
+
+```
+ // Destroy
+  destroy (req, res, next) {
+    Goat.findByIdAndDelete(req.params.id, (err, deletedGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.goat = deletedGoat
+        next()
+      }
+    })
+  },
+```
+## Future Icebox Adapations
+There are a long list of items that could be added here, but thats the what happens when an over active mind gets, well, over active!
+
+Here are the items that would be at the front of the list:
+* Add OAuth login
+* Add likes/dislikes onto each individual comment
+* 
 
 ## RESTful Routes Table
-
-
 
 | Number | Action  | URL             | HTTP Verb     | JSX View Filename | Mongoose Method        | Notes                              |
 | -------|:-------:|:---------------:|:-------------:|:-----------------:|:----------------------:|:----------------------------------:|
