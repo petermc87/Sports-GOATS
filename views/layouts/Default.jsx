@@ -24,6 +24,7 @@ class Default extends React.Component {
           <div className='nav-menu' id='hamburger'>&nbsp;
             <nav>
               <a href='/goats'>Home Page</a><br />
+              <a href='/usergoats'>Your Goats</a><br />
               <a href='/goats/new'>Create a GOAT</a><br />
               <a href='/user/logout'>Logout</a> <br />
             </nav>

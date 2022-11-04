@@ -22,6 +22,7 @@ router.get('/api/:id', dataController.show, apiController.show)
 // STANDARD ROUTES
 // Index
 router.get('/', dataController.index, viewController.index)
+// router.get('/:id', dataController.indexUser, viewController.indexUser)
 // New
 router.get('/new', viewController.newView)
 // Delete

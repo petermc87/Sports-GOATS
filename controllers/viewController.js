@@ -5,6 +5,9 @@ const viewController = {
   index (req, res, next) {
     res.render('goats/Index', res.locals.data)
   },
+  indexUser (req, res, next) {
+    res.render('usergoats/IndexUser', res.locals.data)
+  },
   newView (req, res, next) {
     res.render('goats/New')
   },

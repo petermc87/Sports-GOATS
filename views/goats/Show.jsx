@@ -3,7 +3,7 @@ const Default = require('../layouts/Default.jsx')
 
 class Show extends React.Component {
   render () {
-    const { image, likes, backgroundImage, name, sport, trait, nameOfPoster, description, comments, _id, dislikes } = this.props.goat
+    const { image, likes, backgroundImage, name, sport, trait, description, comments, _id, disLikes, username } = this.props.goat
     const capName = name[0].toUpperCase() + name.substring(1)
 
     return (
@@ -11,7 +11,7 @@ class Show extends React.Component {
 
         <div className='post'>
           <div className='background'>
-            <div><span>Post by:</span> {nameOfPoster}</div><br />
+            <div><span>Post by:</span> {username}</div><br />
             <div><span>Sport:</span> {sport}</div><br />
             <div><span>Trait:</span> {trait}</div><br />
           </div>
@@ -31,7 +31,7 @@ class Show extends React.Component {
         <div className='edit-delete'>
           <div className = 'comments' >
             <p><span>Likes: </span>{likes}</p>
-            <p><span>Dislikes: </span> {dislikes}</p>
+            <p><span>Dislikes: </span> {disLikes}</p>
 
             <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
               <input type='submit' value='Like' />
@@ -42,7 +42,7 @@ class Show extends React.Component {
           </div>
         </div>
         <div className='edit-delete'>
-          <h3>Previous Comments</h3>
+          {/* <h3>Previous Comments</h3>
           {
                             comments.length
                               ? comments.map((comment) => {
@@ -65,7 +65,7 @@ class Show extends React.Component {
             Your Name: <input type='text' name='commentName' />
             Comment: <input type='text' name='commentBody' />
             <input type='submit' value='submit' /><br />
-          </form>
+          </form> */}
         </div>
 
       </Default>

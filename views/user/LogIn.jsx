@@ -1,5 +1,5 @@
 const React = require('react')
-const Default = require('../layouts/Default')
+ 
 
 class LogIn extends React.Component {
   render () {
@@ -26,7 +26,6 @@ class LogIn extends React.Component {
             <a href='/user/login'>Login</a><br />
           </nav>
         </div>
-
       </body>
       <h1>
         Login or Signup!
