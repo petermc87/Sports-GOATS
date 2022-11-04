@@ -12,17 +12,11 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   likes: Boolean,
   disLikes: Boolean,
-  comments: [{
-    commentName: { type: String, required: true },
-    commentBody: { type: String, required: true, timestamps: true },
-    like: { type: Number, required: true },
-    dislike: { type: Number, required: true }
-  }]
+  
 })
 
 // make goats model
 const User = model('User', userSchema)
 
 // --- EXPORT MODEL ---//
-
 module.exports = User

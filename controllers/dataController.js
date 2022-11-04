@@ -18,22 +18,36 @@ const dataController = {
       }
     })
   },
-  // indexUser (req, res, next) {
-  //   Goat.find({ username: req.session.username }, (err, userGoats) => {
-  //     if(err) {
-  //       res.status(400).send({
-  //         msg: err.message
-  //       })
-  //     } else {
-  //       res.locals.data.userGoats = foundGoats
-  //       res.locals.data.loggedIn = req.session
-  //       next() 
-  //     }
-  //   })
-  // },
+  indexUser (req, res, next) {
+    Goat.find({ username: req.session.username }, (err, userGoats) => {
+      if(err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.userGoats = userGoats
+        res.locals.data.loggedIn = req.session
+        next() 
+      }
+    })
+  },
   // Destroy
   destroy (req, res, next) {
     Goat.findByIdAndDelete(req.params.id, (err, deletedGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.goat = deletedGoat
+        res.locals.data.loggedIn = req.session
+        next()
+      }
+    })
+  },
+  destroyComment (req, res, next) {
+    Goat.findByIdAndDelete(req.params.id, (err, deletedGoat) => {
+      console.log(req.params)
       if (err) {
         res.status(400).send({
           msg: err.message
@@ -66,16 +80,19 @@ const dataController = {
           msg: err.message
         })
       } else {
+        console.log(foundGoat)
         foundGoat.comments.push(req.body)
-
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
             res.status(400).send({
               msg: err.message
             })
           } else {
+            
             res.locals.data.goat = updatedGoat
             res.locals.data.loggedIn = req.session
+            res.locals.data.commentName = req.session.username
+         
             next()
           }
         })
@@ -89,16 +106,16 @@ const dataController = {
           msg: err.message
         })
       } else {
-        // console.log()
+
         foundGoat.likes += 1
-        // foundGoat.disLikes += 1
-     
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
+          console.log(req.params)
           if (err) {
             res.status(400).send({
               msg: err.message
             })
           } else {
+            console.log(updatedGoat)
             res.locals.data.goat = updatedGoat
             next()
           }
@@ -111,8 +128,6 @@ const dataController = {
     req.body.username = req.session.username
     req.body.likes = 0
     req.body.disLikes = 0
-    console.log(req.body.username)
-    console.log(req.body)
     Goat.create(req.body, (err, createdGoat) => {
       if (err) {
         res.status(400).send({

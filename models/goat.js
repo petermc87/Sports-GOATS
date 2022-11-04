@@ -10,7 +10,13 @@ const goatSchema = new mongoose.Schema({
   description: { type: String, required: true },
   username: { type: String },
   likes: { type: Number },
-  disLikes: { type: Number }
+  disLikes: { type: Number },
+  comments: [{
+    commentName: { type: String, required: true },
+    commentBody: { type: String, required: true, timestamps: true },
+    like: { type: Number, required: true },
+    dislike: { type: Number, required: true }
+  }]
 },
 { timestamps: true }
 )

@@ -22,14 +22,16 @@ router.get('/api/:id', dataController.show, apiController.show)
 // STANDARD ROUTES
 // Index
 router.get('/', dataController.index, viewController.index)
-// router.get('/:id', dataController.indexUser, viewController.indexUser)
+router.get('/', dataController.indexUser, viewController.indexUser)
 // New
 router.get('/new', viewController.newView)
 // Delete
 router.delete('/:id', dataController.destroy, viewController.redirectHome)
+router.delete('/:id/comments/:id', dataController.destroyComment, viewController.redirectShow)
 // Update
-router.put('/:id/comments', dataController.updateComment, viewController.redirectShow) // <--comments
+
 router.put('/:id/postLikes', dataController.updateLikes, viewController.redirectShow) // <--likes/dislikes
+router.put('/:id/comments/:id', dataController.updateComment, viewController.redirectShow) // <--comments
 router.put('/:id', dataController.update, viewController.redirectShow)
 
 // Create

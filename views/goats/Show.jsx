@@ -36,23 +36,22 @@ class Show extends React.Component {
             <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
               <input type='submit' value='Like' />
             </form>
-            <form method='POST' action={`/goats/${_id}?postLikes?_method=PUT`}>
+            <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
               <input type='submit' value='Dislike' />
             </form>                        
           </div>
         </div>
         <div className='edit-delete'>
-          {/* <h3>Previous Comments</h3>
+          <h3>Previous Comments</h3>
           {
                             comments.length
                               ? comments.map((comment) => {
-                              // console.log(comment)
 
                                 return (
                                   <div className='comments' key={comment._id}>
                                     <p><span>Name:</span> {comment.commentName}</p>
                                     <p><span>Comment:</span> {comment.commentBody}</p>
-                                    <form method='POST' action={`/goats/${_id}/${comment._id}?_method=DELETE`}>
+                                    <form method='POST' action={`/goats/${_id}/comments/${comment._id}?_method=DELETE`}>
                                       <input type='submit' value='Delete' />
                                     </form>
                                   </div>
@@ -62,10 +61,10 @@ class Show extends React.Component {
                         }
           <form method='POST' action={`/goats/${_id}/comments?_method=PUT`}>
             <h3>Add a comment</h3> <br />
-            Your Name: <input type='text' name='commentName' />
+            Your Name: <input type='text' name='commentName' autoComplete={this.props.loggedIn.username}/>
             Comment: <input type='text' name='commentBody' />
             <input type='submit' value='submit' /><br />
-          </form> */}
+          </form>
         </div>
 
       </Default>

@@ -243,33 +243,61 @@ span{
 .form{
   margin-top: 10px;
   font-size: 32px;
+  padding: 100px;
+ background-color: rgb(239, 239, 239);
+
 }
 
 input[type=text], input[type=password]{
-  width: 300px;
+  width: 400px;
   height: 30px;
-  align-items: right;
   font-size: 25px;
 }
 
 textarea{
   height: 200px;
-  width: 90%;
+  width: 25rem;
   font-size: 25px;
 }
 
 .new-form{
-  left: 10rem;
   width: 60rem;
-  padding: 30px;
-  line-height:50px;
+  padding: 40px;
+  box-shadow: 1px 4px 4px 1px #00000029;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
+.input-container{
+  height: 40px;
+  display: flex;
+}
+
+.input-field{
+  position: relative;
+  left: 18rem;
+  top: -2rem;
+}
+
+#textarea{
+  width: 20rem;
+}
+
+#textarea-container{
+  height: 14rem;
+}
 .background{
   background-color: var(--color-primary);
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.new-form > input{
+  width: 10rem;
+  /* left: 20rem;? */
+  
 }
   @keyframes shadows {
     0% {

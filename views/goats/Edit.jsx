@@ -8,14 +8,49 @@ class Edit extends React.Component {
       <Default id='container' title='Post your GOAT here!' username={ this.props.loggedIn.username}>
         <div className='form'>
           <form className='new-form' action={`/goats/${_id}?_method=PUT`} method='POST'>
-            Who is your GOAT: <input type='text' name='name' defaultValue={name} /><br />
-            Image: <input type='text' name='image' defaultValue={image} /><br />
-            Background Image: <input type='text' name='backgroundImage' defaultValue={backgroundImage} /><br />
-            Sport: <input type='text' name='sport' defaultValue={sport} /><br />
-            Your Name: <input type='text' name='nameOfPoster' defaultValue={nameOfPoster} /><br />
-            Trait: <input type='text' name='trait' defaultValue={trait} /><br />
-            A Synopsis of your GOAT: <textarea name='description' defaultValue={description} /><br />
-            <input type='submit' name='' value='Edit GOAT' />
+          <div className='input-container'>
+            <div className='text-field'>Who is your GOAT: 
+              <div className = 'input-field'>
+                <input type='text' name='name' defaultValue={name} /><br />
+              </div>
+            </div>
+          </div>
+          <div className='input-container'>
+            <div className='text-field'>Image: 
+              <div className = 'input-field'>
+                <input type='text' name='image' defaultValue={image} /><br />
+              </div>
+            </div>
+          </div>
+          <div className='input-container'>
+            <div className='text-field'>Background Image: 
+              <div className = 'input-field'>
+                <input type='text' name='backgroundImage' defaultValue={backgroundImage} /><br />
+              </div>
+            </div>
+          </div>
+          <div className='input-container'>
+            <div className='text-field'>Sport:
+              <div className = 'input-field'>
+                <input type='text' name='sport' defaultValue={sport} /><br />
+              </div>
+            </div>
+          </div> 
+          <div className='input-container'>
+            <div className='text-field'>Trait:
+              <div className = 'input-field'>
+                <input type='text' name='trait' defaultValue={trait} /><br />
+              </div>
+            </div>
+          </div>
+          <div className='input-container' id='textarea-container'>
+            <div className='text-field'>A Synopsis of your GOAT: 
+              <div className = 'input-field' id='text-area'>
+                <textarea name='description' defaultValue={description} /><br />
+              </div>
+            </div>
+          </div> 
+          <input type='submit' name='' value='Edit GOAT' />
           </form>
         </div>
       </Default>
