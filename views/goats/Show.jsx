@@ -61,7 +61,7 @@ class Show extends React.Component {
                         }
           <form method='POST' action={`/goats/${_id}/comments?_method=PUT`}>
             <h3>Add a comment</h3> <br />
-            Your Name: <input type='text' name='commentName' autoComplete={this.props.loggedIn.username}/>
+            Your Name: <input type='text' name='commentName'/>
             Comment: <input type='text' name='commentBody' />
             <input type='submit' value='submit' /><br />
           </form>

@@ -31,7 +31,7 @@ router.delete('/:id/comments/:id', dataController.destroyComment, viewController
 // Update
 
 router.put('/:id/postLikes', dataController.updateLikes, viewController.redirectShow) // <--likes/dislikes
-router.put('/:id/comments/:id', dataController.updateComment, viewController.redirectShow) // <--comments
+router.put('/:id/comments', dataController.updateComment, viewController.redirectShow) // <--comments
 router.put('/:id', dataController.update, viewController.redirectShow)
 
 // Create

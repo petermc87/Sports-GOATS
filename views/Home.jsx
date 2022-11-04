@@ -33,6 +33,14 @@ class Index extends React.Component {
             <h1>
               Login or Signup!
             </h1>
+            <div className='post' id='homepage'>
+              <div className='opening-text'>
+                <div className='goat-opening' ><span class='first-letter' id='g'>G </span><span id="greatest">reatest</span></div>
+                <div className='goat-opening' ><span class='first-letter' id='o'>O </span><span id="of">f</span></div>
+                <div className='goat-opening' ><span class='first-letter' id='a'>A </span><span id="all">ll</span></div>
+                <div className='goat-opening' ><span class='first-letter' id='t'>T </span><span id="time">ime</span></div>
+              </div>
+            </div>
           </html>
         )
       }
