@@ -1,6 +1,6 @@
 # Sport GOAT's 🐐
-A CRUD based application, Sport GOATS is a place where you can post you favorite sports personality and why you think they are the GOAT.
-This is a fun place to display your best image of your GOAT including your reasons and have your say on othe users GOATS!
+A CRUD based application, Sport GOATS is a place where you can post your favorite sports personality and detail why you think they are the GOAT.
+This is a fun place to display your GOAT to other users and have your say on what other users have posted!S
 
 
 

@@ -9,7 +9,9 @@ const { Schema, model } = mongoose
 // make goats schema
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  likes: Boolean,
+  disLikes: Boolean
 })
 
 // make goats model

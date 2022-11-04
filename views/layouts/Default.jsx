@@ -25,9 +25,7 @@ class Default extends React.Component {
             <nav>
               <a href='/goats'>Home Page</a><br />
               <a href='/goats/new'>Create a GOAT</a><br />
-              <a href='/user/login'>Login</a><br />
-              <a href=''>Logout</a> <br />
-              <a href='/user/signup'>Sign Up</a>
+              <a href='/user/logout'>Logout</a> <br />
             </nav>
           </div>
 

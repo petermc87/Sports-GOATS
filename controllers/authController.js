@@ -68,5 +68,22 @@ router.post('/login', async (req, res) => {
     })
 })
 
+// logout
+// GET
+router.get('/logout', (req, res) => {
+  // destroy session and redirect to main page
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err)
+      res.status(500).json(err)
+    } else {
+      // res.redirect('/user/login')
+      res.render('Home.jsx')
+    }
+  })
+})
+
+
+
 // --- EXPORT ROUTER ---//
 module.exports = router

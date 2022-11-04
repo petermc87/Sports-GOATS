@@ -5,7 +5,7 @@ class Edit extends React.Component {
   render () {
     const { image, backgroundImage, name, sport, trait, nameOfPoster, description, _id } = this.props.goat
     return (
-      <Default id='container' title='Post your GOAT here!'>
+      <Default id='container' title='Post your GOAT here!' username={ this.props.loggedIn.username}>
         <div className='form'>
           <form className='new-form' action={`/goats/${_id}?_method=PUT`} method='POST'>
             Who is your GOAT: <input type='text' name='name' defaultValue={name} /><br />
@@ -24,3 +24,5 @@ class Edit extends React.Component {
 }
 
 module.exports = Edit
+
+

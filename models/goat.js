@@ -9,10 +9,6 @@ const goatSchema = new mongoose.Schema({
   sport: { type: String, required: true },
   description: { type: String, required: true },
   nameOfPoster: { type: String, required: true, timestamps: true },
-  postLikes: [{
-    likes: { type: Number, required: true },
-    dislikes: { type: Number, required: true }
-  }],
   comments: [{
     commentName: { type: String, required: true },
     commentBody: { type: String, required: true },

@@ -1,14 +1,13 @@
-
 const React = require('react')
 const Default = require('../layouts/Default.jsx')
 
 class Show extends React.Component {
   render () {
-    const { image, postLikes, backgroundImage, name, sport, trait, nameOfPoster, description, comments, _id } = this.props.goat
+    const { image, likes, backgroundImage, name, sport, trait, nameOfPoster, description, comments, _id, dislikes } = this.props.goat
     const capName = name[0].toUpperCase() + name.substring(1)
 
     return (
-      <Default title={`${capName} 🐐GOAT🐐`} goat={this.props.goat}>
+      <Default title={`${capName} 🐐GOAT🐐`} goat={this.props.goat} username={ this.props.loggedIn.username} >
 
         <div className='post'>
           <div className='background'>
@@ -30,28 +29,17 @@ class Show extends React.Component {
 
         </div>
         <div className='edit-delete'>
-          <h3>Likes & Dislikes</h3>
-          {
-                          postLikes.length
-                            ? postLikes.map((like) => {
-                              return (
-                                <div className = 'comments' key={like._id}>
-                                  <p><span>Likes: </span>{like.likes}</p>
-                                  <p><span>Dislikes: </span> {like.dislikes}</p>
-                                </div>
-                              )
-                            })
-                            : ''
-                      }
+          <div className = 'comments' >
+            <p><span>Likes: </span>{likes}</p>
+            <p><span>Dislikes: </span> {dislikes}</p>
 
-          {/* maybe change the method to update and have a checkbox instead of a number. */}
-          <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
-            <br />
-            like: <input type='number' name='likes' />
-            dislike: <input type='number' name='dislikes' />
-            <input type='submit' value='submit' /><br />
-          </form>
-
+            <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
+              <input type='submit' value='Like' />
+            </form>
+            <form method='POST' action={`/goats/${_id}?postLikes?_method=PUT`}>
+              <input type='submit' value='Dislike' />
+            </form>                        
+          </div>
         </div>
         <div className='edit-delete'>
           <h3>Previous Comments</h3>
@@ -86,3 +74,15 @@ class Show extends React.Component {
 }
 
 module.exports = Show
+
+
+
+
+
+// <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
+// <input type='submit' value='Like' />
+// </form>
+
+// <form method='POST' action={`/goats/${_id}?_method=DELETE`}>
+// <input type='submit' value='Dislike' />
+// </form>

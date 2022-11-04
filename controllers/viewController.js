@@ -1,3 +1,4 @@
+// const Goat = require('../models/goat')
 const RESOURCE_PATH = '/goats'
 
 const viewController = {

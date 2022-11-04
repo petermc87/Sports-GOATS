@@ -4,7 +4,7 @@ const Default = require('../layouts/Default.jsx')
 class New extends React.Component {
   render () {
     return (
-      <Default id='container' title='Post your GOAT here!'>
+      <Default id='container' title='Post your GOAT here!' >
         <div className='form'>
           <form className='new-form' action='/goats' method='POST'>
             Who is your GOAT: <input type='text' name='name' placeholder='GOAT name here' /><br />

@@ -6,7 +6,7 @@ const router = require('./authController')
 const dataController = {
   // Index,
   index (req, res, next) {
-    Goat.find({}, (err, foundGoats) => {
+    Goat.find({username: req.session.username}, (err, foundGoats) => {
       if (err) {
         res.status(400).send({
           msg: err.message
@@ -27,6 +27,7 @@ const dataController = {
         })
       } else {
         res.locals.data.goat = deletedGoat
+        res.locals.data.loggedIn = req.session
         next()
       }
     })
@@ -40,6 +41,7 @@ const dataController = {
         })
       } else {
         res.locals.data.goat = updatedGoat
+        res.locals.data.loggedIn = req.session
         next()
       }
     })
@@ -60,6 +62,7 @@ const dataController = {
             })
           } else {
             res.locals.data.goat = updatedGoat
+            res.locals.data.loggedIn = req.session
             next()
           }
         })
@@ -73,7 +76,8 @@ const dataController = {
           msg: err.message
         })
       } else {
-        foundGoat.postLikes.push(req.body)
+      
+        console.log(foundGoat.likes)
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
             res.status(400).send({
@@ -89,6 +93,7 @@ const dataController = {
   },
   // Create
   create (req, res, next) {
+    req.body.username = req.session.username
     Goat.create(req.body, (err, createdGoat) => {
       if (err) {
         res.status(400).send({
@@ -111,6 +116,7 @@ const dataController = {
         })
       } else {
         res.locals.data.goat = foundGoat
+        res.locals.data.loggedIn = req.session
         next()
       }
     })
