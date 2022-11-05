@@ -40,7 +40,8 @@ Once created, you will be brought to the homepage where your post will be displa
 ### *Wireframe Diagram*
 ![alt text](images/wireframe.png)
 
-*Kanban Board*: [Kanban Board]https://trello.com/b/OSVDohzv/sports-goats#
+
+*Kanban Board*: [Kanban Board](https://trello.com/b/OSVDohzv/sports-goats#)
 
 ## Screenshots
 ### *Homepage*
