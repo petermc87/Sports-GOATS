@@ -105,7 +105,6 @@ const dataController = {
       } else {
         foundGoat.likes += 1
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
-          console.log(req.params)
           if (err) {
             res.status(400).send({
               msg: err.message
@@ -128,7 +127,6 @@ const dataController = {
       } else {
         foundGoat.disLikes += 1
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
-          console.log(req.params)
           if (err) {
             res.status(400).send({
               msg: err.message

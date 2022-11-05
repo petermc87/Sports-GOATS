@@ -77,6 +77,10 @@ class Show extends React.Component {
 
 module.exports = Show
 
+
+
+
+
 // <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
 // <input type='submit' value='Like' />
 // </form>

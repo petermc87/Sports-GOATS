@@ -15,7 +15,7 @@ class LogIn extends React.Component {
               <div />
             </a>
             <a id='logo' href=''>
-              <div id='shadows'>Sport Goats</div>
+              <div id='shadows'>Sports Goats</div>
             </a>
             <div id='login'>{this.props.username}</div>
           </div>
