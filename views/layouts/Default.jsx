@@ -2,7 +2,7 @@ const React = require('react')
 
 class Default extends React.Component {
   render () {
-    const { _id, title } = this.props
+    const { title } = this.props
     return (
       <html>
         <head>
@@ -19,12 +19,12 @@ class Default extends React.Component {
             <a id='logo' href='/goats'>
               <div id='shadows'>Sport Goats</div>
             </a>
-            <div id='login'>{this.props.username}</div> 
+            <div id='login'>{this.props.username}</div>
           </div>
           <div className='nav-menu' id='hamburger'>&nbsp;
             <nav>
               <a href='/goats'>Home Page</a><br />
-              <a href='/usergoats'>Your Goats</a><br />
+              {/* <a href='/usergoats'>Your Goats</a><br /> */}
               <a href='/goats/new'>Create a GOAT</a><br />
               <a href='/user/logout'>Logout</a> <br />
             </nav>

@@ -1,7 +1,5 @@
 // const session = require('express-session')
 const Goat = require('../models/goat')
-const User = require('../models/user')
-const router = require('./authController')
 
 const dataController = {
   // Index,
@@ -20,14 +18,14 @@ const dataController = {
   },
   indexUser (req, res, next) {
     Goat.find({ username: req.session.username }, (err, userGoats) => {
-      if(err) {
+      if (err) {
         res.status(400).send({
           msg: err.message
         })
       } else {
         res.locals.data.userGoats = userGoats
         res.locals.data.loggedIn = req.session
-        next() 
+        next()
       }
     })
   },
@@ -88,11 +86,10 @@ const dataController = {
               msg: err.message
             })
           } else {
-            
             res.locals.data.goat = updatedGoat
             res.locals.data.loggedIn = req.session
             res.locals.data.commentName = req.session.username
-         
+
             next()
           }
         })
@@ -106,7 +103,6 @@ const dataController = {
           msg: err.message
         })
       } else {
-
         foundGoat.likes += 1
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           console.log(req.params)
@@ -130,7 +126,6 @@ const dataController = {
           msg: err.message
         })
       } else {
-
         foundGoat.disLikes += 1
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           console.log(req.params)

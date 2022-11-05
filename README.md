@@ -1,4 +1,4 @@
-# Sport GOAT's 🐐
+# Sports GOAT's 🐐
 A CRUD based application, Sport GOATS is a place where you can post your favorite sports personality and detail why you think they are the GOAT.
 This is a fun place to display your GOAT to other users and have your say on what other users have posted!
 
@@ -15,7 +15,7 @@ To begin posting, create an account and login in. You will be redirected to the 
 
 To post, you will have to option to:
 * Add your name
-* Add the sport your GOAT is asssociated with
+* Add the sport your chosen GOAT
 * Add their most notable trait *example: atheliticism*
 * Add and image and background image
 * Add a synopsis explaining the reasons for why they are the GOAT!
