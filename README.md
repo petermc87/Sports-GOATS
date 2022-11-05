@@ -1,12 +1,15 @@
 # Sport GOAT's 🐐
 A CRUD based application, Sport GOATS is a place where you can post your favorite sports personality and detail why you think they are the GOAT.
-This is a fun place to display your GOAT to other users and have your say on what other users have posted!S
+This is a fun place to display your GOAT to other users and have your say on what other users have posted!
 
 
 
 ## Getting Started
 Follow the live link to the page
-## *Live Link*
+
+*Live Link Here*
+
+The main landing page will have the hamburger menu for you to select signup or login.
 
 To begin posting, create an account and login in. You will be redirected to the home page where you will have the option to view previous posts, comments and likes/dislikes. Additionally, you will be able to create your own.
 
@@ -156,7 +159,7 @@ db.on('open', () => {
 
 ```
 
-Next, a model for the each GOAT post is created. This will include all the schema attributes (*see getting started*) mentioned previouly, including `comments` and `postLikes` objects. 
+Next, a model for the each GOAT post is created. This will include all the schema attributes (*see getting started*) mentioned previouly, including `comments` array, `likes` and `disLikes` objects. 
 
 ``` 
 const mongoose = require('mongoose')
@@ -169,14 +172,12 @@ const goatSchema = new mongoose.Schema({
   trait: { type: String, required: true },
   sport: { type: String, required: true },
   description: { type: String, required: true },
-  nameOfPoster: { type: String, required: true, timestamps: true },
-  postLikes: [{
-    likes: { type: Number, required: true },
-    dislikes: { type: Number, required: true }
-  }],
+  username: { type: String },
+  likes: { type: Number },
+  disLikes: { type: Number },
   comments: [{
     commentName: { type: String, required: true },
-    commentBody: { type: String, required: true },
+    commentBody: { type: String, required: true, timestamps: true },
     like: { type: Number, required: true },
     dislike: { type: Number, required: true }
   }]
@@ -212,7 +213,7 @@ module.exports = User
 ```
 
 #### Views
-Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is part of a defualt display, along with the page teh dynamically changing page header. See *figure 1* thru *figure 8* where at the top shows the navigation and corresponding header.
+Using React, a number of different view templates are created. For the main page, an index of all the posts is displayed for the user to interact with. The navigation bar at the top is part of a defualt display, along with the page the dynamically changing page header. See *figure 1* thru *figure 8* where at the top shows the navigation and corresponding header.
 
 The views for each page displayed to the user:
 
@@ -220,13 +221,14 @@ The views for each page displayed to the user:
 * `New.jsx` - React view template for creating a new GOAT (see *figure 9*).
 * `Edit.jsx` - React view template that is modeled exactly as the `New.jsx`. The information from the previously created post is pulled into this template so that it can be edited.
 * `Show.jsx` React view template for displaying all the post information as selected by the user. It contains comments array and all posted likes and dislikes.
+* `Home.jsx` React view template for displaying the landing page for the application.
  
 #### Controllers
 To control the flow of data, a separate folder containing the `authController.js`, `dataController.js`, `routeController.js` and `viewController.js`.
 
 To note, the `server.js` contains the Express middleware connection between the `/goats` url and the `routeController.js`. This is also the case for the `/user`.
 
-Of particular interest to the reader is the the `authController.js`. When creating a new user, a password is encrypted(hashed and salted) with the help of the `bcrpytjs` npm package.
+Of particular interest to the reader is the the `authController.js`. When creating a new user, a password is encrypted (hashed and salted) with the help of the `bcrpytjs` npm package.
 
 ```
 router.post('/signup', async (req, res) => {
@@ -271,7 +273,7 @@ The information entered by the user when creating a new goat is stored in `req` 
   },
 ```
 #### Read
-When a user clicks on a post, `.findById` will search the database for a document referenced by its unique id, `req.params.id`, and is stored locally to be passed into the `Show.jsx` template for rendering.
+When a user clicks on a post, `.findById` will search the database for a document referenced by its unique id, `req.params.id`, and is stored locally to `res.locals`  to be passed into the `Show.jsx` template for rendering.
 ```
  show (req, res, next) {
     Goat.findById(req.params.id, (err, foundGoat) => {
@@ -312,7 +314,7 @@ A post is first edited by finding the corresponding post from the databse by `re
 
 The post is then updated using `.findByIdAndUpdate` Mongoose method. Essentially, this is similar to the `.findById` but with the added `req.body` where the new information in the body of the post is then updated.
 
-Below shows the same function used for updating comments for each post once a new one is added.
+Below shows the same function used for updating comments for each post once a new one is added. The array of comments previoulsy pushed into the comments array from the schema `foundGoat.comments.push(req.body)` avaialable in `req.body` for rendering.
 
 ```
   // Update
@@ -374,8 +376,9 @@ There are a long list of items that could be added here, but thats what happens 
 
 Here are the items that would be at the front of the list:
 * Add OAuth login
-* Add likes/dislikes onto each individual comment
-* 
+* Boolean likes/dislikes. One per user for each
+* Another route to show the index of all posts by a user to be modified as they see fit
+* Comments stored in an array on the user schema to allow for modification only by the owner of the comment
 
 ## RESTful Routes Table
 
@@ -386,7 +389,7 @@ Here are the items that would be at the front of the list:
 | 3      | New     |  /goats/new     |  GET          |    New.jsx        |  N/A                   | A form to enter information for a new GOAT post |
 | 4      | Create  |  /goats/        |  POST         |    none           |  Goat.create(req.body) | When a new post has been entered, it will then get posted to the main page|
 | 5      | Edit    |  /goats/:id/edit|  GET          |    Edit.jsx       |  Goat.findById         | When the user wants to edit posts, they will be redirected to the edit view template (same as show) so that the info can be edited|
-| 6      | Update  |  /goats/:id, /goats/:id/comments, /goats/:id/postLikes|PUT       |none           |Goat.findByIdAndUpdate|Comments on posts and likes on a particular post. NOTE: there are likes/dislikes on comments also| 
+| 6      | Update  |  /goats/:id, /goats/:id/comments, /goats/:id/postLikes, /goats/:id/postDisLikes |PUT       |none           |Goat.findByIdAndUpdate|Comments on posts and likes on a particular post. NOTE: there are likes/dislikes on comments also| 
 | 7      | Destroy |  /goats/:id     |  DELETE       |    none           |  Goat.findByIdAndDelete| Deleting a post. This will also be the same for comments and will be restricted by user|
 
 

@@ -19,26 +19,30 @@ class Show extends React.Component {
           <div id='show-back'><img src={backgroundImage} alt='' />
             <div id='show-img'><img src={image} alt='' /></div>
           </div>
-
-          <form action={`/goats/${_id}/edit`}>
-            <input type='submit' value='Edit Post' />
-          </form>
-          <form method='POST' action={`/goats/${_id}?_method=DELETE`}>
-            <input type='submit' value={`Delete ${name}`} />
-          </form>
+          <div className='button-container'>
+            <form action={`/goats/${_id}/edit`}>
+              <input type='submit' value='Edit Post' />
+            </form>
+            <form method='POST' action={`/goats/${_id}?_method=DELETE`}>
+              <input type='submit' value={`Delete ${name}`} />
+            </form>
+          </div>
 
         </div>
         <div className='edit-delete'>
           <div className = 'comments' >
-            <p><span>Likes: </span>{likes}</p>
-            <p><span>Dislikes: </span> {disLikes}</p>
-
-            <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
-              <input type='submit' value='Like' />
-            </form>
-            <form method='POST' action={`/goats/${_id}/postDisLikes?_method=PUT`}>
-              <input type='submit' value='Dislike' />
-            </form>                        
+            <div className='button-container'>
+              <p><span>Likes: </span>{likes}</p>
+              <p><span>Dislikes: </span> {disLikes}</p>
+            </div>
+            <div className='button-container'>
+              <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
+                <input type='submit' value='Like' />
+              </form>
+              <form method='POST' action={`/goats/${_id}/postDisLikes?_method=PUT`}>
+                <input type='submit' value='Dislike' />
+              </form>
+            </div>                        
           </div>
         </div>
         <div className='edit-delete'>
