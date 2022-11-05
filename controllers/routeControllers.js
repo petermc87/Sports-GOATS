@@ -26,11 +26,12 @@ router.get('/', dataController.indexUser, viewController.indexUser)
 // New
 router.get('/new', viewController.newView)
 // Delete
-router.delete('/:id', dataController.destroy, viewController.redirectHome)
 router.delete('/:id/comments/:id', dataController.destroyComment, viewController.redirectShow)
+router.delete('/:id', dataController.destroy, viewController.redirectHome)
 // Update
 
-router.put('/:id/postLikes', dataController.updateLikes, viewController.redirectShow) // <--likes/dislikes
+router.put('/:id/postLikes', dataController.updateLikes, viewController.redirectShow)
+router.put('/:id/postDisLikes', dataController.updateDisLikes, viewController.redirectShow) // <--likes/dislikes
 router.put('/:id/comments', dataController.updateComment, viewController.redirectShow) // <--comments
 router.put('/:id', dataController.update, viewController.redirectShow)
 

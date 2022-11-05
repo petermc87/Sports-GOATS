@@ -123,6 +123,30 @@ const dataController = {
       }
     })
   },
+  updateDisLikes (req, res, next) {
+    Goat.findById(req.params.id, (err, foundGoat) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+
+        foundGoat.disLikes += 1
+        Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
+          console.log(req.params)
+          if (err) {
+            res.status(400).send({
+              msg: err.message
+            })
+          } else {
+            console.log(updatedGoat)
+            res.locals.data.goat = updatedGoat
+            next()
+          }
+        })
+      }
+    })
+  },
   // Create
   create (req, res, next) {
     req.body.username = req.session.username

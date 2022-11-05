@@ -36,7 +36,7 @@ class Show extends React.Component {
             <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
               <input type='submit' value='Like' />
             </form>
-            <form method='POST' action={`/goats/${_id}/postLikes?_method=PUT`}>
+            <form method='POST' action={`/goats/${_id}/postDisLikes?_method=PUT`}>
               <input type='submit' value='Dislike' />
             </form>                        
           </div>
