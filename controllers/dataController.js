@@ -78,7 +78,6 @@ const dataController = {
           msg: err.message
         })
       } else {
-        console.log(foundGoat)
         foundGoat.comments.push(req.body)
         Goat.findByIdAndUpdate(req.params.id, foundGoat, { new: true }, (err, updatedGoat) => {
           if (err) {
