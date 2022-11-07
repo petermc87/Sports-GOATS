@@ -7,7 +7,7 @@ const methodOverride = require('method-override')
 const db = require('./models/db')
 // Create our express app
 const app = express()
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 8000
 const cors = require('cors')
 const MongoStore = require('connect-mongo')
 const session = require('express-session')
