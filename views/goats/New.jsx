@@ -36,7 +36,7 @@ class New extends React.Component {
             <div className='input-container'>
               <div className='text-field'>Trait:
                 <div className='input-field'>
-                  <input type='text' name='trait' placeholder='What is there most difining trait' />
+                  <input type='text' name='trait' placeholder='What is their most difining trait' />
                 </div>
               </div>
             </div>
