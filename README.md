@@ -7,7 +7,7 @@ This is a fun place to display your GOAT to other users and have your say on wha
 ## Getting Started
 Follow the live link to the page
 
-*Live Link Here*
+*https://sports--goats.herokuapp.com/*
 
 The main landing page will have the hamburger menu for you to select signup or login.
 
